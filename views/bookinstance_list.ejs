@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="/catalog">Home</a>
+        <a href="/catalog/books">Livros</a>
+        <a href="/catalog/authors">Autores</a>
+        <a href="/catalog/genres">Gêneros</a>
+        <a href="/catalog/bookinstances">Instâncias</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1><%= title %></h1>
+      <% if (bookinstance_list && bookinstance_list.length) { %>
+        <ul>
+          <% bookinstance_list.forEach(bookinstance => { %>
+            <li><a href="<%= bookinstance.url %>"><%= bookinstance.book.title %></a> : <%= bookinstance.imprint %> - <strong><%= bookinstance.status %></strong></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>Nenhuma instância encontrada.</p>
+      <% } %>
+    </main>
+
+    <footer class="site-footer">Biblioteca Local</footer>
+  </body>
+</html>

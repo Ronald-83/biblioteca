@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/produtos/detalhes/0">Produtos</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1><%= produto.nome %> <span class="small-icon"><%= produto.icon %></span></h1>
+      <p><%= produto.descricao %></p>
+
+      <section class="produto-detalhes">
+        <h2>Detalhes</h2>
+        <p>ID do produto: <%= produto.id %></p>
+        <p>Disponibilidade: Em estoque</p>
+        <p>Preço sugerido: R$ 199,00</p>
+        <h3>Especificações</h3>
+        <ul>
+          <li>Material: Aço carbono</li>
+          <li>Peso: 350g</li>
+          <li>Garantia: 12 meses</li>
+        </ul>
+      </section>
+
+      <p><a href="/produtos">Voltar para produtos</a></p>
+    </main>
+
+    <footer class="site-footer">Catálogo de produtos</footer>
+  </body>
+</html>
