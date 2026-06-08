@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  p Bem-vindo ao #[em Sistema de Gerenciamento de Jogadores e Clubes], um exemplo de aplicação web Express desenvolvido como tutorial.
+
+  h1 Conteúdo Dinâmico
+
+  p A biblioteca possui os seguintes registros:
+
+  ul
+    li #[strong Livros:] !{book_count}
+    li #[strong Cópias:] !{book_instance_count}
+    li #[strong Cópias disponíveis:] !{book_instance_available_count}
+    li #[strong Autores:] !{author_count}
+    li #[strong Gêneros:] !{genre_count}
+    li #[strong Jogadores:] !{jogador_count}
+    li #[strong Clubes:] !{clube_count}
+
+  h2 Links Rápidos
+
+  ul
+    li
+      a(href='/catalog/jogadores') 📋 Ver Todos os Jogadores
+    li
+      a(href='/catalog/jogador/create') ➕ Criar Novo Jogador
+

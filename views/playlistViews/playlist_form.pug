@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h1= title
+  
+  if errors
+    .alert.alert-danger
+      h4 ⚠️ Houve erros no envio:
+      ul.error-list
+        each error in errors
+          li #{error.msg}
+  
+  form(method='POST')
+    .form-group
+      label(for='name') Nome do Jogador: *
+      input#name.form-control(type='text' placeholder='Digite o nome do jogador' name='name' required value=(undefined===playlist ? '' : playlist.name))
+    
+    .form-group
+      label(for='position') Posição: *
+      input#position.form-control(type='text' placeholder='Ex: Atacante, Meia, Defesa...' name='position' required value=(undefined===playlist ? '' : playlist.position))
+    
+    .form-group
+      button.btn.btn-success(type='submit') ✓ Salvar
+      |  
+      a.btn.btn-secondary(href='/catalog/jogadores') ← Cancelar

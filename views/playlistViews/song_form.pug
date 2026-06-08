@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+  .detail-page
+    h1= title
+    
+    p
+      strong Jogador:
+      |  #{playlist.name}
+    
+    if errors
+      .alert.alert-danger
+        h4 ⚠️ Houve erros no envio:
+        ul.error-list
+          each error in errors
+            li #{error.msg}
+    
+    form(method='POST')
+      .form-group
+        label(for='name') Nome do Clube: *
+        input#name.form-control(type='text' placeholder='Ex: Manchester United' name='name' required value=(undefined===song ? '' : song.name))
+      
+      .form-group
+        label(for='city') Cidade: *
+        input#city.form-control(type='text' placeholder='Ex: Manchester' name='city' required value=(undefined===song ? '' : song.city))
+      
+      .form-group
+        label(for='founded') Ano de Fundação: *
+        input#founded.form-control(type='number' placeholder='Ex: 1878' name='founded' required value=(undefined===song ? '' : song.founded))
+      
+      .form-group
+        label(for='championships') Campeonatos Ganhos:
+        input#championships.form-control(type='number' min='0' placeholder='Ex: 20' name='championships' required value=(undefined===song ? '0' : song.championships))
+      
+      .form-group
+        label(for='description') Descrição:
+        textarea#description.form-control(name='description' rows='3' placeholder='Informações sobre o clube...') #{undefined===song ? '' : song.description}
+      
+      .form-group
+        label(for='logo_url') URL do Logo:
+        input#logo_url.form-control(type='url' placeholder='Ex: https://example.com/logo.png' name='logo_url' value=(undefined===song ? '' : song.logo_url))
+      
+      .form-group
+        button.btn.btn-success(type='submit') 
+          if update
+            | ✓ Atualizar Clube
+          else
+            | ➕ Adicionar Clube
+        |  
+        a.btn.btn-secondary(href=playlist.url) ← Cancelar

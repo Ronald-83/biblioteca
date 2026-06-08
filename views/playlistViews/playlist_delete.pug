@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  .detail-page
+    h1= title
+    
+    .alert.alert-danger
+      p 
+        strong ⚠️ Tem certeza que deseja deletar este jogador?
+      
+      p
+        strong Jogador:
+        |  #{playlist.name}
+      
+      if playlist.clubs && playlist.clubs.length
+        p
+          em 🗑️ Este jogador possui #{playlist.clubs.length} clube(s) que também serão deletados.
+    
+    form(method='POST')
+      button.btn.btn-danger(type='submit') 🗑️ Confirmar Deleção
+      |  
+      a.btn.btn-secondary(href=playlist.url) ← Cancelar

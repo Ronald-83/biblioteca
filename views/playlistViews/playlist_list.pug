@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  h1= title
+  
+  p
+    a.btn.btn-primary(href='/catalog/jogador/create') ➕ Criar novo jogador
+  
+  if playlist_list.length
+    table.playlist-table
+      thead
+        tr
+          th Nome
+          th Posição
+          th Criado em
+          th Ações
+      tbody
+        each playlist in playlist_list
+          tr
+            td
+              a(href=playlist.url) #{playlist.name}
+            td= playlist.position ? playlist.position : 'Sem posição'
+            td= playlist.created_at_formatted
+            td
+              a.btn.btn-info.btn-sm(href=playlist.url) 👁️ Ver
+              |  
+              a.btn.btn-secondary.btn-sm(href=playlist.url + '/update') ✏️ Editar
+              |  
+              a.btn.btn-danger.btn-sm(href=playlist.url + '/delete') 🗑️ Deletar
+  else
+    .alert.alert-info
+      p Nenhum jogador criado ainda. 
+        a(href='/catalog/jogador/create') Criar um agora!

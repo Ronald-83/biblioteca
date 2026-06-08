@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  .detail-page
+    .detail-header
+      h1= title
+    
+    if playlist
+      .detail-section
+        p
+          strong Nome do Jogador:
+          |  #{playlist.name}
+        
+        p
+          strong Posição:
+          |  #{playlist.position || 'Não informada'}
+        
+        p
+          strong Criado em:
+          |  #{playlist.created_at_formatted}
+        
+        p
+          strong Última atualização:
+          |  #{playlist.updated_at_formatted}
+      
+      h2 Clubes do Jogador (#{playlist.clubs ? playlist.clubs.length : 0})
+      
+      if playlist.clubs && playlist.clubs.length
+        .list-group
+          each club in playlist.clubs
+            .card
+              h3= club.name
+              p
+                strong Cidade:
+                |  #{club.city}
+              p
+                strong Fundação:
+                |  #{club.founded}
+              p
+                strong Campeonatos:
+                |  #{club.championships}
+              p
+                strong Descrição:
+                |  #{club.description || 'Sem descrição'}
+              if club.logo_url
+                p
+                  img(src=club.logo_url alt='Logo do clube' style='max-width: 100px; height: auto;')
+              .card-meta
+                small Adicionado em: #{club.created_at_formatted}
+              p
+                a.btn.btn-secondary(href=`/catalog/jogador/${playlist._id}/clube/${club._id}/update`) ✏️ Editar
+                |  
+                a.btn.btn-danger(href=`/catalog/jogador/${playlist._id}/clube/${club._id}/delete`) 🗑️ Remover
+      else
+        .alert.alert-info
+          p Nenhum clube adicionado ainda.
+      
+      hr
+      
+      p
+        a.btn.btn-success(href=`/catalog/jogador/${playlist._id}/clube/create`) ➕ Adicionar Clube
+        |  
+        a.btn.btn-primary(href=`/catalog/jogador/${playlist._id}/update`) ✏️ Editar Jogador
+        |  
+        a.btn.btn-danger(href=`/catalog/jogador/${playlist._id}/delete`) 🗑️ Deletar Jogador
+        |  
+        a.btn.btn-secondary(href='/catalog/jogadores') ← Voltar para Jogadores

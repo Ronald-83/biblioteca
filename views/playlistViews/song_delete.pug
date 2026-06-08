@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  .detail-page
+    h1= title
+    
+    .alert.alert-danger
+      p 
+        strong ⚠️ Tem certeza que deseja remover este clube do jogador?
+      
+      p
+        strong Jogador:
+        |  #{playlist.name}
+      
+      p
+        strong Clube:
+        |  #{song.name}
+        |  • #{song.city}
+    
+    form(method='POST')
+      button.btn.btn-danger(type='submit') 🗑️ Remover Clube
+      |  
+      a.btn.btn-secondary(href=playlist.url) ← Cancelar
